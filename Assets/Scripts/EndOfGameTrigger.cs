@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EndOfGameTrigger : MonoBehaviour
 {
-    [SerializeField] private UnityEvent OnEndGameEvent;
+    [SerializeField] private UnityEvent _gameOver;
 
     private List<Enemy> _enemies;
 
@@ -14,7 +14,7 @@ public class EndOfGameTrigger : MonoBehaviour
         _enemies = FindObjectsOfType<Enemy>().ToList();
         foreach (var enemy in _enemies)
         {
-            enemy.OnDie += OnEnemyDied;
+            enemy.Died += OnEnemyDied;
         }
     }
 
@@ -22,16 +22,16 @@ public class EndOfGameTrigger : MonoBehaviour
     {
         foreach (var enemy in _enemies)
         {
-            enemy.OnDie -= OnEnemyDied;
+            enemy.Died -= OnEnemyDied;
         }
     }
 
     private void OnEnemyDied(Enemy diedEnemy)
     {
-        diedEnemy.OnDie -= OnEnemyDied;
+        diedEnemy.Died -= OnEnemyDied;
         _enemies.Remove(diedEnemy);
 
         if (_enemies.Count <= 0)
-            OnEndGameEvent?.Invoke();
+            _gameOver?.Invoke();
     }
 }

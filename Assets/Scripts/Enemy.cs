@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private Vector3 _targetPosition;
 
-    public event Action<Enemy> OnDie; 
+    public event Action<Enemy> Died; 
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
         if (Vector2.Distance(transform.position, _player.position) < 0.2f)
         {
-            OnDie?.Invoke(this);
+            Died?.Invoke(this);
             Destroy(gameObject);
         }
     }

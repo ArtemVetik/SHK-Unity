@@ -5,10 +5,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
+    private Coroutine _boost;
     private float _speedBoost;
 
     private void Start()
     {
+        _boost = null;
         _speedBoost = 1f;
     }
 
@@ -21,6 +23,11 @@ public class Player : MonoBehaviour
     public void SpeedBoost(float factor, float duration)
     {
         _speedBoost = factor;
+        if (_boost != null)
+        {
+            StopCoroutine(_boost);
+            _boost = null;
+        }
         StartCoroutine(SpeedBoostCoroutine(duration));
     }
 
