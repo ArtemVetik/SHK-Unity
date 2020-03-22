@@ -11,19 +11,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _spawnRadius;
 
     private Vector3 _targetPosition;
+    private float _deadDistance;
 
     public event Action<Enemy> Died; 
 
     private void Start()
     {
         _targetPosition = Random.insideUnitCircle * _spawnRadius;
+        _deadDistance = 0.2f;
     }
 
     private void Update()
     {
         Move();
 
-        if (Vector2.Distance(transform.position, _player.position) < 0.2f)
+        if (CanDie())
         {
             Died?.Invoke(this);
             Destroy(gameObject);
@@ -35,5 +37,10 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
         if (transform.position == _targetPosition)
             _targetPosition = Random.insideUnitCircle * _spawnRadius;
+    }
+
+    private bool CanDie()
+    {
+        return Vector2.Distance(transform.position, _player.position) < _deadDistance;
     }
 }
