@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1761935011}
   _movementSpeed: 2
-  _spawnRadius: 4
+  _movementRadius: 4
 --- !u!212 &141422278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1761935011}
   _movementSpeed: 2
-  _spawnRadius: 4
+  _movementRadius: 4
 --- !u!212 &1578050039
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1761935011}
   _movementSpeed: 2
-  _spawnRadius: 4
+  _movementRadius: 4
 --- !u!212 &1754708963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -963,4 +963,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1761935011}
   _movementSpeed: 2
-  _spawnRadius: 4
+  _movementRadius: 4

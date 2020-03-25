@@ -8,16 +8,16 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform _player;
     [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _spawnRadius;
+    [SerializeField] private float _movementRadius;
 
     private Vector3 _targetPosition;
     private float _deadDistance;
 
-    public event Action<Enemy> Died; 
+    public event Action<Enemy> Died;
 
     private void Start()
     {
-        _targetPosition = Random.insideUnitCircle * _spawnRadius;
+        _targetPosition = Random.insideUnitCircle * _movementRadius;
         _deadDistance = 0.2f;
     }
 
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
         if (transform.position == _targetPosition)
-            _targetPosition = Random.insideUnitCircle * _spawnRadius;
+            _targetPosition = Random.insideUnitCircle * _movementRadius;
     }
 
     private bool CanDie()
