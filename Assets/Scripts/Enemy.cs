@@ -2,45 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _movementRadius;
-
-    private Vector3 _targetPosition;
-    private float _deadDistance;
-
     public event Action<Enemy> Died;
 
-    private void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _targetPosition = Random.insideUnitCircle * _movementRadius;
-        _deadDistance = 0.2f;
-    }
-
-    private void Update()
-    {
-        Move();
-
-        if (CanDie())
+        if (collision.gameObject.TryGetComponent(out Player player))
         {
             Died?.Invoke(this);
             Destroy(gameObject);
         }
-    }
-
-    private void Move()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
-        if (transform.position == _targetPosition)
-            _targetPosition = Random.insideUnitCircle * _movementRadius;
-    }
-
-    private bool CanDie()
-    {
-        return Vector2.Distance(transform.position, _player.position) < _deadDistance;
     }
 }
