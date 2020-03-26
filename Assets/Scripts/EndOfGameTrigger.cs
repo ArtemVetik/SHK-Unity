@@ -11,7 +11,7 @@ public class EndOfGameTrigger : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemies = FindObjectsOfType<Enemy>().ToList();
+        _enemies = GetComponentsInChildren<Enemy>().ToList();
         foreach (var enemy in _enemies)
         {
             enemy.Died += OnEnemyDied;
