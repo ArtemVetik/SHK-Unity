@@ -11,7 +11,7 @@ public class SpeedBoost : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            player.SpeedBoost(_factor, _duration);
+            player.AddSpeedBoost(_factor, _duration);
             Destroy(gameObject);
         }
     }

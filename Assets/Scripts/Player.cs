@@ -5,12 +5,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    private Coroutine _boost;
     private float _speedBoost;
 
     private void Start()
     {
-        _boost = null;
         _speedBoost = 1f;
     }
 
@@ -20,20 +18,15 @@ public class Player : MonoBehaviour
         transform.Translate(moveDirection * _speed * _speedBoost * Time.deltaTime);
     }
 
-    public void SpeedBoost(float factor, float duration)
+    public void AddSpeedBoost(float factor, float duration)
     {
-        _speedBoost = factor;
-        if (_boost != null)
-        {
-            StopCoroutine(_boost);
-            _boost = null;
-        }
-        StartCoroutine(SpeedBoostCoroutine(duration));
+        StartCoroutine(AddSpeedBoostCoroutine(factor, duration));
     }
 
-    private IEnumerator SpeedBoostCoroutine(float duration)
+    private IEnumerator AddSpeedBoostCoroutine(float factor, float duration)
     {
+        _speedBoost += factor;
         yield return new WaitForSeconds(duration);
-        _speedBoost = 1f;   
+        _speedBoost -= factor;   
     }
 }
