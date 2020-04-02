@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6881239172100998631}
   - component: {fileID: 6881239172100998626}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,6 +94,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f7df4705b7dae48944a39b48934484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _movementSpeed: 2
-  _spawnRadius: 4

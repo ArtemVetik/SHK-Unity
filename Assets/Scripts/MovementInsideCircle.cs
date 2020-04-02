@@ -11,13 +11,18 @@ public class MovementInsideCircle : MonoBehaviour
 
     private void Start()
     {
-        _targetPosition = Random.insideUnitCircle * _radius;
+        _targetPosition = GetNextPosition();
     }
 
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
         if (transform.position == _targetPosition)
-            _targetPosition = Random.insideUnitCircle * _radius;
+            _targetPosition = GetNextPosition();
+    }
+
+    private Vector2 GetNextPosition()
+    {
+        return Random.insideUnitCircle * _radius;
     }
 }
